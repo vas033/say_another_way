@@ -30,7 +30,7 @@ export function Search() {
       variant='outlined'
       onChange={e => {
         e.preventDefault;
-        const input = e.currentTarget.value;
+        const input = e.currentTarget.value.toLowerCase();
         setInputValue(input)
       }}
     />
