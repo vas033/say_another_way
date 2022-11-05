@@ -1,0 +1,10 @@
+:root {
+    --main-page-color: #333333;
+    --rating-color: #faaf00;
+    --add-to-cart-color: #9c27b0;
+}
+
+* {
+    font-family: 'Oswald'!important;
+    color: var(--main-page-color);
+}

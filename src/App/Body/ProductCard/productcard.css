@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title.hideText span,
+.category.hideText {
+    -webkit-line-clamp: 1;
+}
+
+.desc.hideText {
+    -webkit-line-clamp: 3;
+}
+
+.title,
+.desc,
+.category {
+    cursor: pointer
+}
+
+.hideText span,
+.hideText.desc,
+.hideText.category {
+    display: -webkit-box!important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rating svg {
+    fill: var(--rating-color);
+}
+
+.addToCart svg {
+    fill: var(--add-to-cart-color)
+}
