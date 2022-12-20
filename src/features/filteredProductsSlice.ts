@@ -25,5 +25,5 @@ const filteredProductsSlice = createSlice({
 
 export default filteredProductsSlice.reducer;
 export const { getValue } = filteredProductsSlice.actions; 
-export const searchResults = (state:RootState) => state.search.filteredArr;
-export const filterResults = (state:RootState) => state.search.len;
+// export const searchResults = (state:RootState) => state.search.filteredArr;
+// export const filterResults = (state:RootState) => state.search.len;

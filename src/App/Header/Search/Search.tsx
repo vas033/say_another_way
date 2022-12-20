@@ -1,38 +1,30 @@
-import { TextField } from '@mui/material';
+import { Autocomplete, TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getValue } from '../../../features/filteredProductsSlice';
-import { Product, product, productsStatus } from '../../../features/productsSlice';
+import { product } from '../../../features/productsSlice';
+import { searchStringValue, getValue } from '../../../features/searchString';
 import styles from './search.css';
 
 export function Search() {
   const dispatch = useDispatch();
   const products = useSelector(product);
-  const productState = useSelector(productsStatus);
+  const searchStr = useSelector(searchStringValue)
+  const searchInput = document.getElementById('searchInput');
 
   const [inputValue, setInputValue] = useState('');
 
-  const emptyArr: Product[] = []
-  const [filteredProducts, setFilteredProducts] = useState(emptyArr);
-
   useEffect(() => {
-    inputValue == ''
-      ? setFilteredProducts(products)
-      : setFilteredProducts(products.filter(item => item.title.toLowerCase().match(inputValue)));
-  }, [inputValue])
-
-  useEffect(() => { dispatch(getValue(filteredProducts)) }, [filteredProducts, dispatch])
+   setTimeout(() => dispatch(getValue(inputValue.toLocaleLowerCase())), 400)
+  }, [dispatch, inputValue])
 
   return (
-    <TextField
-    style={{width: '40%'}}
-      label='Search for product'
-      variant='outlined'
-      onChange={e => {
-        e.preventDefault;
-        const input = e.currentTarget.value.toLowerCase();
-        setInputValue(input)
-      }}
+    <Autocomplete
+      id="searchInput"
+      sx={{ width: '40%' }}
+      inputValue={inputValue}
+      options={products.map(item => item.title)}
+      renderInput={(params) => <TextField {...params} label='Search product' />}
+      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
     />
   );
 }
